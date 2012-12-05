@@ -6,7 +6,7 @@ An addon for Tendenci for displaying embedded videos.
 '''
 
 setup(
-    name='videos',
+    name='tendenci-videos',
     author='John-Michael Oswalt',
     author_email='jmoswalt@schipul.com',
     version='1.0.2',
