@@ -1,6 +1,6 @@
 from tendenci.core.registry import site
 from tendenci.core.registry.base import AppRegistry, lazy_reverse
-from addons.videos.models import Video
+from videos.models import Video
 
 
 class VideoRegistry(AppRegistry):

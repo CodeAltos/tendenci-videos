@@ -1,9 +1,9 @@
 from django import forms
 
-from addons.videos.models import Video
+from videos.models import Video
 from tinymce.widgets import TinyMCE
 from tendenci.core.perms.forms import TendenciBaseForm
-from addons.videos.embedly import is_pattern_match
+from videos.embedly import is_pattern_match
 
 class VideoForm(TendenciBaseForm):
 

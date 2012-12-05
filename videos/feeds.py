@@ -3,7 +3,7 @@ from tendenci.core.site_settings.utils import get_setting
 from tendenci.core.perms.utils import PUBLIC_FILTER
 from tendenci.core.sitemaps import TendenciSitemap
 
-from addons.videos.models import Video
+from videos.models import Video
 
 class LatestEntriesFeed(SubFeed):
     title =  'Latest Videos'

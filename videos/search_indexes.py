@@ -4,7 +4,7 @@ from django.utils.html import strip_tags, strip_entities
 
 from tendenci.core.perms.indexes import TendenciBaseSearchIndex
 
-from addons.videos.models import Video
+from videos.models import Video
 
 class VideoIndex(TendenciBaseSearchIndex):
     title = indexes.CharField(model_attr='title')

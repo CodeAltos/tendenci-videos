@@ -5,7 +5,7 @@ from tendenci.core.base.http import Http403
 from tendenci.core.site_settings.utils import get_setting
 from tendenci.core.event_logs.models import EventLog
 from tendenci.core.perms.utils import has_perm, get_query_filters, has_view_perm
-from addons.videos.models import Video, Category
+from videos.models import Video, Category
 
 
 def index(request, cat_slug=None, template_name="videos/list.html"):

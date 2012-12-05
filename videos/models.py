@@ -1,13 +1,13 @@
 from django.db import models
 from django.core.urlresolvers import reverse
-from addons.videos.embedly import get_oembed
+from videos.embedly import get_oembed
 from django.contrib.contenttypes import generic
 
 from tendenci.core.perms.object_perms import ObjectPermission
 from tagging.fields import TagField
 from tendenci.core.perms.models import TendenciBaseModel
 from tinymce import models as tinymce_models
-from addons.videos.managers import VideoManager
+from videos.managers import VideoManager
 
 class Category(models.Model):
     name = models.CharField(max_length=200, unique=True)

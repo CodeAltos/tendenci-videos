@@ -1,6 +1,6 @@
 from django.template import Library, TemplateSyntaxError, Variable
 
-from addons.videos.models import Video
+from videos.models import Video
 from tendenci.core.base.template_tags import ListNode, parse_tag_kwargs
 
 register = Library()

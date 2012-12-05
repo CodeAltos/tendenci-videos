@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
-from addons.videos.feeds import LatestEntriesFeed
+from videos.feeds import LatestEntriesFeed
 
-urlpatterns = patterns('addons.videos.views',
+urlpatterns = patterns('videos.views',
     url(r'^videos/$', 'search', name="video"),
     url(r'^videos/category/([^/]+)/$', 'index', name="video.category"),
     url(r'^videos/search/$', 'search', name="video.search"),
