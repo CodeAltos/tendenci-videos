@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="{{ STATIC_URL }}css/video.css">
 {% endblock %}
 
-{% block sidebar %}
+{% block video_sidebar %}
 <div id="videos-sidebar">
 
 	{% if can_add_video %}
@@ -40,8 +40,4 @@
 </div>
 
 {{ block.super }}
-{% endblock sidebar %}
-
-{% block extra_body %}
-{{ block.super }}
-{% endblock %}
+{% endblock video_sidebar %}
