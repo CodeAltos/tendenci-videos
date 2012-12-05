@@ -9,7 +9,7 @@ setup(
     name='videos',
     author='John-Michael Oswalt',
     author_email='jmoswalt@schipul.com',
-    version='1.0.1',
+    version='1.0.2',
     license='',
     description='An addon for Tendenci for displaying embedded videos.',
     long_description=longdesc,
