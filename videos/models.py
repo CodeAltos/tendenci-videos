@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.urlresolvers import reverse
-from videos.embedly import get_oembed
+from embedly import Embedly
 from django.contrib.contenttypes import generic
 
 from tendenci.core.perms.object_perms import ObjectPermission
@@ -8,6 +8,8 @@ from tagging.fields import TagField
 from tendenci.core.perms.models import TendenciBaseModel
 from tinymce import models as tinymce_models
 from videos.managers import VideoManager
+
+client = Embedly("438be524153e11e18f884040d3dc5c07")
 
 class Category(models.Model):
     name = models.CharField(max_length=200, unique=True)
@@ -91,7 +93,7 @@ class OembedlyCache(models.Model):
             return OembedlyCache.objects.filter(url=url, width=width, height=height)[0].thumbnail
         except IndexError:
             try:
-                result = get_oembed(url, format='json', maxwidth=width, maxheight=height)
+                result = client.oembed(url, format='json', maxwidth=width, maxheight=height)
                 thumbnail = result['thumbnail_url']
                 code = result['html']
             except KeyError:
@@ -108,7 +110,7 @@ class OembedlyCache(models.Model):
             return OembedlyCache.objects.filter(url=url, width=width, height=height)[0].code
         except IndexError:
             try:
-                result = get_oembed(url, format='json', maxwidth=width, maxheight=height)
+                result = client.oembed(url, format='json', maxwidth=width, maxheight=height)
                 thumbnail = result['thumbnail_url']
                 code = result['html']
             except KeyError:
