@@ -3,7 +3,10 @@ from django import forms
 from videos.models import Video
 from tinymce.widgets import TinyMCE
 from tendenci.core.perms.forms import TendenciBaseForm
-from videos.embedly import is_pattern_match
+from embedly import Embedly
+
+# Create Embedly instance
+client = Embedly("438be524153e11e18f884040d3dc5c07")
 
 class VideoForm(TendenciBaseForm):
 
@@ -43,9 +46,11 @@ class VideoForm(TendenciBaseForm):
             
     def clean_video_url(self):
         value = self.cleaned_data.get('video_url')
+        # Get embedded object from URL
+        obj = client.oembed(value)
         if not value:
-            return value
-        if not is_pattern_match(value):
+            raise forms.ValidationError('You must enter a URL')
+        if obj.error:
             raise forms.ValidationError('This url is not supported by embed.ly')
         return value
 

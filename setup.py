@@ -30,5 +30,8 @@ setup(
     ],
     include_package_data=True,
     packages=find_packages(),
-    install_requires=['tendenci>=5.1'],
+    install_requires=[
+    "tendenci>=5.1",
+    "Embedly>=0.4.3",
+    ],
 )
