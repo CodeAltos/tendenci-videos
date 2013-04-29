@@ -8,6 +8,7 @@ from tagging.fields import TagField
 from tendenci.core.perms.models import TendenciBaseModel
 from tinymce import models as tinymce_models
 from videos.managers import VideoManager
+from tendenci.core.site_settings.utils import get_setting
 
 client = Embedly("438be524153e11e18f884040d3dc5c07")
 
@@ -63,6 +64,9 @@ class Video(TendenciBaseModel):
     class Meta:
         permissions = (("view_video","Can view video"),)
         ordering = ('ordering',)
+        verbose_name = get_setting('module', 'videos', 'label') or "Video"
+        verbose_name_plural = get_setting('module', 'videos', 'label_plural') or "Videos"
+        
     
     @models.permalink
     def get_absolute_url(self):
@@ -114,9 +118,9 @@ class OembedlyCache(models.Model):
                 thumbnail = result['thumbnail_url']
                 code = result['html']
             except KeyError:
-                return 'Unable to embed code for video <a href="%s">%s</a>' % (url, url)
+                return 'Unable to embed code for <a href="%s">%s</a>' % (url, url)
             except Exception, e:
-                return 'Unable to embed code for video <a href="%s">%s</a><br>Error: %s' % (url, url, e) 
+                return 'Unable to embed code for <a href="%s">%s</a><br>Error: %s' % (url, url, e) 
             obj = OembedlyCache(url=url, width=width, height=height, code=code, thumbnail=thumbnail)
             obj.save()
             return code
