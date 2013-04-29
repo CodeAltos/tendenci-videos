@@ -2,9 +2,7 @@ from django.conf.urls.defaults import *
 from videos.feeds import LatestEntriesFeed
 from tendenci.core.site_settings.utils import get_setting
 
-urlpath = get_setting('module', 'videos', 'url')
-if not urlpath:
-    urlpath = "videos"
+urlpath = get_setting('module', 'videos', 'url') or "videos"
 
 urlpatterns = patterns('videos.views',
     url(r'^%s/$' % urlpath, 'search', name="video"),
