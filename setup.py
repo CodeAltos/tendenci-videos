@@ -2,17 +2,17 @@ from setuptools import setup, find_packages
 
 longdesc = \
 '''
-An addon for Tendenci for displaying embedded videos.
+An addon for Tendenci for displaying embedded videos, audio, images and other content
+supported by Embed.ly. More information about Embed.ly here: http://embed.ly/docs/embed
 
-Supports Vimeo and YouTube embeds. Includes drag-n-drop reordering
-in the Django admin area.
+Includes drag-n-drop reordering in the Django admin area.
 '''
 
 setup(
     name='tendenci-videos',
     author='Schipul',
     author_email='programmers@schipul.com',
-    version='1.0.7',
+    version='1.0.8',
     license='GPL3',
     description='Videos addon for Tendenci',
     long_description=longdesc,
