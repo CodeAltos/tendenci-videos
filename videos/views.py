@@ -48,11 +48,19 @@ def search(request, cat_slug=None, template_name="videos/list.html"):
             categories = Category.objects.filter(slug=cat)
             category = None
             if categories:
-                category = category[0]
+                category = categories[0]
         videos = Video.objects.search(query, user=request.user)
     else:
         filters = get_query_filters(request.user, 'videos.view_video')
         videos = Video.objects.filter(filters).distinct()
+        if cat:
+            categories = Category.objects.filter(slug=cat)
+            category = None
+            if categories:
+                category = categories[0]
+            if category:
+                videos = videos.filter(category=category)
+
         if request.user.is_authenticated():
             videos = videos.select_related()
         videos = videos.order_by('-ordering', '-create_dt')
