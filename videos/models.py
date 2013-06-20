@@ -30,7 +30,7 @@ class Video(TendenciBaseModel):
     Videos plugin to add embedding based on video url. Uses embed.ly
     """
     title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, max_length=200)
     category = models.ForeignKey(Category)
     image = models.ImageField(upload_to='uploads/videos/%y/%m', blank=True)
     video_url = models.CharField(max_length=500, help_text='Youtube, Vimeo, etc..')
