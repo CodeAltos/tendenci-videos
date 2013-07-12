@@ -12,7 +12,7 @@ setup(
     name='tendenci-videos',
     author='Schipul',
     author_email='programmers@schipul.com',
-    version='1.0.9',
+    version='1.0.10',
     license='GPL3',
     description='Videos addon for Tendenci',
     long_description=longdesc,
