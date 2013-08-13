@@ -38,7 +38,7 @@ class VideoAdmin(TendenciBaseModelAdmin):
             '%sjs/global/tinymce.event_handlers.js' % settings.STATIC_URL,
             '%sjs/jquery-1.6.2.min.js' % settings.STATIC_URL,
             '%sjs/jquery-ui-1.8.17.custom.min.js' % settings.STATIC_URL,
-            '%sjs/admin/admin-list-reorder.js' % settings.STATIC_URL,
+            '%sjs/admin/admin-list-reorder-ordering.js' % settings.STATIC_URL,
         )
     
     def get_fieldsets(self, request, obj=None):
