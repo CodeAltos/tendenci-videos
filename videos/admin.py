@@ -26,8 +26,7 @@ class VideoAdmin(TendenciBaseModelAdmin):
             'group_perms',
         )}),
         ('Publishing Status', {'fields': (
-            'status',
-            'status_detail'
+            'status_detail',
         )}),
     )
     form = VideoForm
