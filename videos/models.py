@@ -72,6 +72,28 @@ class Video(TendenciBaseModel):
     def get_absolute_url(self):
         return ("video.details", [self.slug])
 
+    def video_embed_url(self):
+        """
+        Returns a youtube embed URL
+        Attempts to convert common YouTube URL patterns
+        to the URL embed pattern.
+
+        TODO: Contribute more video service embed URL's
+        """
+        import re
+
+        url_pattern = r'http:\/\/www\.youtube\.com\/watch\?v=(\w+)'
+        share_pattern = r'http:\/\/youtu\.be\/(\w+)'
+        repl = lambda x: 'http://www.youtube.com/embed/%s' % x.group(1)
+
+        if re.match(url_pattern, self.video_url):
+            return re.sub(url_pattern, repl, self.video_url)
+
+        if re.match(share_pattern, self.video_url):
+            return re.sub(share_pattern, repl, self.video_url)
+
+        return self.video_url
+
     def embed_code(self, **kwargs):
         width = kwargs.get('width') or 600
         return get_oembed_code(self.video_url, width, 400)
