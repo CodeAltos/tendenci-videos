@@ -12,7 +12,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class VideoAdmin(TendenciBaseModelAdmin):
 
-    list_display = ['title', 'category', 'ordering']
+    list_display = ['title', 'tags', 'category', 'ordering']
     list_filter = ['category']
     list_editable = ['ordering']
     prepopulated_fields = {'slug': ['title']}
