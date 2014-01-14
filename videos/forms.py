@@ -49,7 +49,7 @@ class VideoForm(TendenciBaseForm):
         obj = client.oembed(value)
         if not value:
             raise forms.ValidationError('You must enter a URL')
-        if obj.error:
+        if obj.get('error'):
             raise forms.ValidationError('This url is not supported by embed.ly')
         return value
 
