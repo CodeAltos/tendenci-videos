@@ -1,6 +1,7 @@
 *.pyc
 # Exclude . files
 *.
+.*
 
 # except for .gitignore
 !.gitignore
