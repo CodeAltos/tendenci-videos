@@ -32,6 +32,6 @@ setup(
     packages=find_packages(),
     install_requires=[
     "tendenci>=5.1",
-    "Embedly>=0.4.3",
+    "Embedly>=0.5.0",
     ],
 )
