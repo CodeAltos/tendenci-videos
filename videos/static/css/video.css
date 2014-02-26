@@ -36,6 +36,9 @@
 }
 
 /* search form */
+.t form.search-form {
+	margin-bottom: 10px;
+}
 .t form.search-form input[type="text"] {
 	width: 60%;
 	margin-bottom: 10px;
@@ -54,4 +57,5 @@
 	width: 200px; 
 	height: 250px; 
 	float: left;
+	margin-right: 10px;
 }

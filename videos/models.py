@@ -24,6 +24,18 @@ class Category(models.Model):
     
     def get_absolute_url(self):
         return reverse('video.category', args=[self.slug])
+
+
+class VideoType(models.Model):
+    name = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(unique=True)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Video Types"
+
     
 class Video(TendenciBaseModel):
     """
@@ -32,6 +44,7 @@ class Video(TendenciBaseModel):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, max_length=200)
     category = models.ForeignKey(Category)
+    video_type = models.ForeignKey(VideoType, null=True, blank=True)
     image = models.ImageField(upload_to='uploads/videos/%y/%m', blank=True)
     video_url = models.CharField(max_length=500, help_text='Youtube, Vimeo, etc..')
     description = tinymce_models.HTMLField()

@@ -25,6 +25,7 @@ class VideoForm(TendenciBaseForm):
             'title',
             'slug',
             'category',
+            'video_type',
             'image',
             'video_url',
             'tags',

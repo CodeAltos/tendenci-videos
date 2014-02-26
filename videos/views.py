@@ -5,7 +5,7 @@ from tendenci.core.base.http import Http403
 from tendenci.core.site_settings.utils import get_setting
 from tendenci.core.event_logs.models import EventLog
 from tendenci.core.perms.utils import has_perm, get_query_filters, has_view_perm
-from videos.models import Video, Category
+from videos.models import Video, Category, VideoType
 
 
 def index(request, cat_slug=None, template_name="videos/list.html"):
@@ -23,6 +23,7 @@ def index(request, cat_slug=None, template_name="videos/list.html"):
     videos = videos.order_by('-ordering', '-create_dt')
 
     categories = Category.objects.all()
+    video_types = VideoType.objects.all()
 
     EventLog.objects.log()
 
@@ -35,35 +36,36 @@ def search(request, cat_slug=None, template_name="videos/list.html"):
     If a search index is available, this page will also
     have the option to search through videos.
     """
-    has_index = get_setting('site', 'global', 'searchindex')
     query = request.GET.get('q', None)
 
     categories = Category.objects.all()
+    video_types = VideoType.objects.all()
     cat = request.GET.get('cat', cat_slug)
+    vtype = request.GET.get('type', '')
 
-    if has_index and query:
-        if cat:
-            cat_query = 'cat:%s' % cat
-            query = ' '.join([query, cat_query])
-            categories = Category.objects.filter(slug=cat)
-            category = None
-            if categories:
-                category = categories[0]
-        videos = Video.objects.search(query, user=request.user)
-    else:
-        filters = get_query_filters(request.user, 'videos.view_video')
-        videos = Video.objects.filter(filters).distinct()
-        if cat:
-            categories = Category.objects.filter(slug=cat)
-            category = None
-            if categories:
-                category = categories[0]
-            if category:
-                videos = videos.filter(category=category)
+    filters = get_query_filters(request.user, 'videos.view_video')
+    videos = Video.objects.filter(filters).distinct()
+    if request.user.is_authenticated():
+        videos = videos.select_related()
 
-        if request.user.is_authenticated():
-            videos = videos.select_related()
-        videos = videos.order_by('-ordering', '-create_dt')
+    if query:
+        videos = videos.filter(Q(title__icontains=query)|
+                               Q(description__icontains=query))
+    if cat:
+        categories = Category.objects.filter(slug=cat)
+        category = None
+        if categories:
+            category = categories[0]
+        if category:
+            videos = videos.filter(category=category)
+    if vtype:
+        vtypes = VideoType.objects.filter(slug=vtype)
+        video_type = None
+        if vtypes:
+            video_type = vtypes[0]
+        if video_type:
+            videos = videos.filter(video_type=video_type)
+    videos = videos.order_by('position', '-create_dt')
 
     EventLog.objects.log()
 

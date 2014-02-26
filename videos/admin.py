@@ -2,23 +2,31 @@ from django.contrib import admin
 from django.conf import settings
 
 from tendenci.core.perms.admin import TendenciBaseModelAdmin
-from videos.models import Video, Category
+from videos.models import Video, Category, VideoType
 from videos.forms import VideoForm
+
+
+class VideoInline(admin.TabularInline):
+    model = Video
+    max_num = 0
+    can_delete = False
+    fields = ('title', 'tags')
+    readonly_fields = ('title', 'tags')
 
 
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['name']}
+    inlines = [VideoInline]
 
 
 class VideoAdmin(TendenciBaseModelAdmin):
 
-    list_display = ['title', 'tags', 'category', 'ordering']
-    list_filter = ['category']
+    list_display = ['title', 'tags', 'category', 'video_type', 'ordering']
     list_editable = ['ordering']
     prepopulated_fields = {'slug': ['title']}
     search_fields = ['question', 'answer']
     fieldsets = (
-        (None, {'fields': ('title', 'slug', 'category', 'image', 'clear_image', 'video_url', 'tags', 'description')}),
+        (None, {'fields': ('title', 'slug', 'category', 'video_type', 'image', 'clear_image', 'video_url', 'tags', 'description')}),
         ('Permissions', {'fields': ('allow_anonymous_view',)}),
         ('Advanced Permissions', {'classes': ('collapse',), 'fields': (
             'user_perms',
@@ -51,3 +59,4 @@ class VideoAdmin(TendenciBaseModelAdmin):
 
 admin.site.register(Video, VideoAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(VideoType, CategoryAdmin)
