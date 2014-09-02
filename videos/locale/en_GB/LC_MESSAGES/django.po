@@ -19,7 +19,7 @@ msgstr ""
 
 #: templates/videos/meta.html:16
 msgid "Category:"
-msgstr ""
+msgstr "Category:"
 
 #: templates/videos/meta.html:21
 #, python-format
@@ -41,8 +41,8 @@ msgstr ""
 
 #: templates/videos/meta.html:54
 msgid "Eventlogs"
-msgstr ""
+msgstr "Eventlogs"
 
 #: templates/videos/meta.html:56
 msgid "Options"
-msgstr ""
+msgstr "Options"

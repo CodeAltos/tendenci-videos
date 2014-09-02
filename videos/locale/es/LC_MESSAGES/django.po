@@ -4,13 +4,14 @@
 # 
 # Translators:
 # bleven <bleven@tendenci.com>, 2014
+# Broden <bschipul@tendenci.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tendenci\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-22 20:29+0000\n"
-"PO-Revision-Date: 2014-08-22 18:54+0000\n"
-"Last-Translator: aolivo <aolivo@tendenci.com>\n"
+"PO-Revision-Date: 2014-09-01 20:10+0000\n"
+"Last-Translator: Broden <bschipul@tendenci.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/tendenci/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,14 +28,14 @@ msgstr "Sub Categoría"
 msgid ""
 "Created on %(create_date)s\n"
 "            by:"
-msgstr ""
+msgstr "creado en %(create_date)s\npor:"
 
 #: templates/videos/meta.html:28
 #, python-format
 msgid ""
 "Last updated %(update_date)s\n"
 "            by:"
-msgstr ""
+msgstr "Última actualización %(update_date)s\npor:"
 
 #: templates/videos/meta.html:39
 msgid "Share"
