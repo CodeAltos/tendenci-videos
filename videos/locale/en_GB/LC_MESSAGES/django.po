@@ -37,7 +37,7 @@ msgstr ""
 
 #: templates/videos/meta.html:39
 msgid "Share"
-msgstr ""
+msgstr "Share"
 
 #: templates/videos/meta.html:54
 msgid "Eventlogs"
