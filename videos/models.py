@@ -3,25 +3,25 @@ from django.core.urlresolvers import reverse
 from embedly import Embedly
 from django.contrib.contenttypes import generic
 
-from tendenci.core.perms.object_perms import ObjectPermission
+from tendenci.apps.perms.object_perms import ObjectPermission
 from tagging.fields import TagField
-from tendenci.core.perms.models import TendenciBaseModel
+from tendenci.apps.perms.models import TendenciBaseModel
 from tinymce import models as tinymce_models
 from videos.managers import VideoManager
-from tendenci.core.site_settings.utils import get_setting
+from tendenci.apps.site_settings.utils import get_setting
 
 client = Embedly("438be524153e11e18f884040d3dc5c07")
 
 class Category(models.Model):
     name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(unique=True)
-    
+
     def __unicode__(self):
         return self.name
-    
+
     class Meta:
         verbose_name_plural = "Categories"
-    
+
     def get_absolute_url(self):
         return reverse('video.category', args=[self.slug])
 
@@ -36,7 +36,7 @@ class VideoType(models.Model):
     class Meta:
         verbose_name_plural = "Video Types"
 
-    
+
 class Video(TendenciBaseModel):
     """
     Videos plugin to add embedding based on video url. Uses embed.ly
@@ -56,13 +56,13 @@ class Video(TendenciBaseModel):
                                           content_type_field="content_type")
 
     objects = VideoManager()
-    
+
     def __unicode__(self):
         return self.title
-    
+
     def save(self, *args, **kwargs):
         model = self.__class__
-        
+
         if self.ordering is None:
             # Append
             try:
@@ -73,14 +73,14 @@ class Video(TendenciBaseModel):
                 self.ordering = 0
 
         return super(Video, self).save(*args, **kwargs)
-    
+
     class Meta:
         permissions = (("view_video","Can view video"),)
         ordering = ('ordering',)
         verbose_name = get_setting('module', 'videos', 'label') or "Video"
         verbose_name_plural = get_setting('module', 'videos', 'label_plural') or "Videos"
-        
-    
+
+
     @models.permalink
     def get_absolute_url(self):
         return ("video.details", [self.slug])
@@ -122,10 +122,10 @@ class OembedlyCache(models.Model):
     height = models.IntegerField(db_index=True)
     code = models.TextField()
     thumbnail = models.CharField(max_length=800)
-    
+
     def __unicode__(self):
         return self.url
-    
+
     @staticmethod
     def get_thumbnail(url, width, height):
         try:
@@ -142,8 +142,8 @@ class OembedlyCache(models.Model):
             obj = OembedlyCache(url=url, width=width, height=height, thumbnail=thumbnail, code=code)
             obj.save()
             return thumbnail
-        
-    @staticmethod    
+
+    @staticmethod
     def get_code(url, width, height):
         try:
             return OembedlyCache.objects.filter(url=url, width=width, height=height)[0].code
@@ -155,13 +155,13 @@ class OembedlyCache(models.Model):
             except KeyError:
                 return 'Unable to embed code for <a href="%s">%s</a>' % (url, url)
             except Exception, e:
-                return 'Unable to embed code for <a href="%s">%s</a><br>Error: %s' % (url, url, e) 
+                return 'Unable to embed code for <a href="%s">%s</a><br>Error: %s' % (url, url, e)
             obj = OembedlyCache(url=url, width=width, height=height, code=code, thumbnail=thumbnail)
             obj.save()
             return code
 
 def get_oembed_code(url, width, height):
     return OembedlyCache.get_code(url, width, height)
-    
+
 def get_oembed_thumbnail(url, width, height):
     return OembedlyCache.get_thumbnail(url, width, height)

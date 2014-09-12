@@ -1,5 +1,5 @@
-from tendenci.core.registry import site
-from tendenci.core.registry.base import AppRegistry, lazy_reverse
+from tendenci.apps.registry import site
+from tendenci.apps.registry.base import AppRegistry, lazy_reverse
 from videos.models import Video
 
 
@@ -8,7 +8,7 @@ class VideoRegistry(AppRegistry):
     author = 'Schipul - The Web Marketing Company'
     author_email = 'programmers@schipul.com'
     description = 'Add video and display them in a grid format'
-    
+
     event_logs = {
         'video':{
             'base':('1200000','993355'),

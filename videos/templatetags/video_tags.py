@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.template import Library, TemplateSyntaxError, Variable, Node
 
 from videos.models import Video
-from tendenci.core.base.template_tags import ListNode, parse_tag_kwargs
+from tendenci.apps.base.template_tags import ListNode, parse_tag_kwargs
 
 register = Library()
 

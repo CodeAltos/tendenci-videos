@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.conf import settings
 
-from tendenci.core.perms.admin import TendenciBaseModelAdmin
+from tendenci.apps.perms.admin import TendenciBaseModelAdmin
 from videos.models import Video, Category, VideoType
 from videos.forms import VideoForm
 

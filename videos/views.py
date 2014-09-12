@@ -1,10 +1,10 @@
 from django.template.context import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 
-from tendenci.core.base.http import Http403
-from tendenci.core.site_settings.utils import get_setting
-from tendenci.core.event_logs.models import EventLog
-from tendenci.core.perms.utils import has_perm, get_query_filters, has_view_perm
+from tendenci.apps.base.http import Http403
+from tendenci.apps.site_settings.utils import get_setting
+from tendenci.apps.event_logs.models import EventLog
+from tendenci.apps.perms.utils import has_perm, get_query_filters, has_view_perm
 from videos.models import Video, Category, VideoType
 
 
@@ -27,9 +27,9 @@ def index(request, cat_slug=None, template_name="videos/list.html"):
 
     EventLog.objects.log()
 
-    return render_to_response(template_name, locals(), 
+    return render_to_response(template_name, locals(),
         context_instance=RequestContext(request))
-            
+
 def search(request, cat_slug=None, template_name="videos/list.html"):
     """
     This page lists out all videos. The order can be customized.
@@ -65,25 +65,25 @@ def search(request, cat_slug=None, template_name="videos/list.html"):
             video_type = vtypes[0]
         if video_type:
             videos = videos.filter(video_type=video_type)
-    videos = videos.order_by('position', '-create_dt')
+    videos = videos.order_by('ordering', '-create_dt')
 
     EventLog.objects.log()
 
-    return render_to_response(template_name, locals(), 
+    return render_to_response(template_name, locals(),
         context_instance=RequestContext(request))
 
 
 def detail(request, slug, template_name="videos/details.html"):
     "Video page with embed code printed"
-    
+
     categories = Category.objects.all()
-    
+
     video = get_object_or_404(Video, slug=slug)
 
     if has_perm(request.user, 'videos.view_video', video):
         EventLog.objects.log(instance=video)
 
-        return render_to_response(template_name, {'video': video,'categories': categories}, 
+        return render_to_response(template_name, {'video': video,'categories': categories},
             context_instance=RequestContext(request))
     else:
         raise Http403

@@ -1,8 +1,7 @@
 from haystack import indexes
-from haystack import site
 from django.utils.html import strip_tags, strip_entities
 
-from tendenci.core.perms.indexes import TendenciBaseSearchIndex
+from tendenci.apps.perms.indexes import TendenciBaseSearchIndex
 
 from videos.models import Video
 
@@ -23,5 +22,3 @@ class VideoIndex(TendenciBaseSearchIndex):
 
     def prepare_order(self, obj):
         return obj.create_dt
-
-site.register(Video, VideoIndex)
