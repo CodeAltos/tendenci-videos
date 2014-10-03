@@ -8,32 +8,32 @@ msgstr ""
 "Project-Id-Version: Tendenci\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-22 20:29+0000\n"
-"PO-Revision-Date: 2014-10-02 09:02+0000\n"
-"Last-Translator: Ed Schipul <eschipul@tendenci.com>\n"
-"Language-Team: Russian (http://www.transifex.com/projects/p/tendenci/language/ru/)\n"
+"PO-Revision-Date: 2014-10-02 23:47+0000\n"
+"Last-Translator: bleven <bleven@tendenci.com>\n"
+"Language-Team: French (Switzerland) (http://www.transifex.com/projects/p/tendenci/language/fr_CH/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ru\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: fr_CH\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: templates/videos/meta.html:16
 msgid "Category:"
-msgstr "Категория:"
+msgstr ""
 
 #: templates/videos/meta.html:21
 #, python-format
 msgid ""
 "Created on %(create_date)s\n"
 "            by:"
-msgstr "Создан %(create_date)s             по:"
+msgstr ""
 
 #: templates/videos/meta.html:28
 #, python-format
 msgid ""
 "Last updated %(update_date)s\n"
 "            by:"
-msgstr "Последнее обновление %(update_date)s             по:"
+msgstr ""
 
 #: templates/videos/meta.html:39
 msgid "Share"
