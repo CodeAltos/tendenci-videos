@@ -19,14 +19,14 @@ msgstr ""
 
 #: templates/videos/meta.html:16
 msgid "Category:"
-msgstr ""
+msgstr "الفئة:"
 
 #: templates/videos/meta.html:21
 #, python-format
 msgid ""
 "Created on %(create_date)s\n"
 "            by:"
-msgstr ""
+msgstr "تم إنشاؤها على %(create_date)s ق             من قبل:"
 
 #: templates/videos/meta.html:28
 #, python-format
@@ -41,8 +41,8 @@ msgstr ""
 
 #: templates/videos/meta.html:54
 msgid "Eventlogs"
-msgstr ""
+msgstr "و eventlogs"
 
 #: templates/videos/meta.html:56
 msgid "Options"
-msgstr ""
+msgstr "خيارات"
