@@ -146,12 +146,30 @@ class OembedlyCache(models.Model):
     @staticmethod
     def get_code(url, width, height):
         try:
-            return OembedlyCache.objects.filter(url=url, width=width, height=height)[0].code
+            instance = OembedlyCache.objects.filter(url=url, width=width, height=height)[0]
+            code = instance.code
+            # find and replace https: with blank for embed to become protocol independent
+            if 'https:' in code:
+                code.replace('https:', '')
+
+            elif 'http:' in code:
+                code.replace('http:', '')
+
+            instance.code = code
+            instance.save()
+            return code
+
         except IndexError:
             try:
                 result = client.oembed(url, format='json', maxwidth=width, maxheight=height)
                 thumbnail = result['thumbnail_url']
                 code = result['html']
+                if 'https:' in code:
+                    code.replace('https:', '')
+
+                if 'http:' in code:
+                    code.replace('http:', '')
+
             except KeyError:
                 return 'Unable to embed code for <a href="%s">%s</a>' % (url, url)
             except Exception, e:
