@@ -152,7 +152,7 @@ class OembedlyCache(models.Model):
             if 'https:' in code:
                 code = code.replace('https:', '')
 
-            elif 'http:' in code:
+            if 'http:' in code:
                 code = code.replace('http:', '')
 
             instance.code = code
