@@ -150,10 +150,10 @@ class OembedlyCache(models.Model):
             code = instance.code
             # find and replace https: with blank for embed to become protocol independent
             if 'https:' in code:
-                code.replace('https:', '')
+                code = code.replace('https:', '')
 
             elif 'http:' in code:
-                code.replace('http:', '')
+                code = code.replace('http:', '')
 
             instance.code = code
             instance.save()
