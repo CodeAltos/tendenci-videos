@@ -165,10 +165,10 @@ class OembedlyCache(models.Model):
                 thumbnail = result['thumbnail_url']
                 code = result['html']
                 if 'https:' in code:
-                    code.replace('https:', '')
+                    code = code.replace('https:', '')
 
                 if 'http:' in code:
-                    code.replace('http:', '')
+                    code = code.replace('http:', '')
 
             except KeyError:
                 return 'Unable to embed code for <a href="%s">%s</a>' % (url, url)
