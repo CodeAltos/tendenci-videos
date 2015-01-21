@@ -107,31 +107,12 @@ class Video(TendenciBaseModel):
 
         return self.video_url
 
-    @property
-    def src_video_url(self):
-        """
-        Removes http or https from the video url
-        to avoid error Mixed Content error.
-
-        Sample Error:
-        Mixed Content: The page at 'https://tendenci.com/videos/add-rotator/'
-        was loaded over HTTPS, but requested an insecure resource
-        'http://player.vimeo.com/video/37813204'. This request has been blocked;
-        the content must be served over HTTPS.
-
-        src will become //player.vimeo.com/video/37813204 which is protocol
-        independent (independent on http or https)
-        """
-
-        return self.video_url.strip('https')
-
     def embed_code(self, **kwargs):
         width = kwargs.get('width') or 600
-        return get_oembed_code(src_video_url, width, 400)
+        return get_oembed_code(self.video_url, width, 400)
 
     def thumbnail(self):
         return get_oembed_thumbnail(self.video_url, 600, 400)
-
 
 
 class OembedlyCache(models.Model):
