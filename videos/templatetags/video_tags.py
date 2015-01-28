@@ -9,6 +9,15 @@ from tendenci.apps.base.template_tags import ListNode, parse_tag_kwargs
 register = Library()
 
 
+@register.inclusion_tag("videos/top_nav_items.html", takes_context=True)
+def video_current_app(context, user, video=None):
+    context.update({
+        'app_object': video,
+        "user": user
+    })
+    return context
+
+
 @register.inclusion_tag("videos/options.html", takes_context=True)
 def video_options(context, user, video):
     context.update({
@@ -32,10 +41,10 @@ def list_videos(parser, token):
 
         {% list_videos as [varname] [options] %}
 
-    Be sure the [varname] has a specific name like ``videos_sidebar`` or 
+    Be sure the [varname] has a specific name like ``videos_sidebar`` or
     ``videos_list``. Options can be used as [option]=[value]. Wrap text values
     in quotes like ``tags="cool"``. Options include:
-    
+
         ``limit``
            The number of items that are shown. **Default: 3**
         ``order``
@@ -141,9 +150,9 @@ def related_videos(parser, token):
 
         {% related_videos video as [varname] [options] %}
 
-    Be sure the [varname] has a specific name like ``videos_sidebar`` or 
+    Be sure the [varname] has a specific name like ``videos_sidebar`` or
     ``videos_list``. Options can be used as [option]=[value].
-    
+
         ``limit``
            The number of items that are shown. **Default: 3**
         ``order``
