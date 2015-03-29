@@ -4,7 +4,7 @@
 
 {% block title %}{% if category %}{{category|title}} {% endif %}{% trans 'Videos' %}{% endblock %}
 
-{% block body %}
+{% block content %}
 <div class="t">
 <h1>{% if category %}{{category|title}} {% endif %}{% trans 'Videos' %}</h1>
 {% if can_add_video %}
@@ -36,5 +36,5 @@
     {% endfor %}
 </div>
 </div>
-{% endblock body %}
+{% endblock %}
 
