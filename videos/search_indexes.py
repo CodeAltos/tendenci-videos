@@ -14,6 +14,10 @@ class VideoIndex(TendenciBaseSearchIndex):
     # RSS fields
     order = indexes.DateTimeField()
 
+    @classmethod
+    def get_model(self):
+        return Video
+
     def prepare_description(self, obj):
         description = obj.description
         description = strip_tags(description)
