@@ -6,7 +6,6 @@ from tendenci.core.perms.indexes import TendenciBaseSearchIndex
 
 from videos.models import Video
 
-
 class VideoIndex(TendenciBaseSearchIndex):
     title = indexes.CharField(model_attr='title')
     description = indexes.CharField(model_attr='description')
@@ -15,10 +14,6 @@ class VideoIndex(TendenciBaseSearchIndex):
 
     # RSS fields
     order = indexes.DateTimeField()
-
-    @classmethod
-    def get_model(self):
-        return Video
 
     def prepare_description(self, obj):
         description = obj.description
