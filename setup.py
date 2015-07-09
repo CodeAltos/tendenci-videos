@@ -12,7 +12,7 @@ setup(
     name='tendenci-videos',
     author='Schipul',
     author_email='programmers@schipul.com',
-    version='6.0.2',
+    version='7.0.0',
     license='GPL3',
     description='Videos addon for Tendenci',
     long_description=longdesc,
@@ -31,7 +31,7 @@ setup(
     include_package_data=True,
     packages=find_packages(),
     install_requires=[
-    "tendenci>=6.0.0,<7.0",
+    "tendenci>=7.0.0,<6.0",
     "Embedly>=0.5.0",
     ],
 )
