@@ -13,7 +13,7 @@ class VideoForm(TendenciBaseForm):
     description = forms.CharField(required=False,
         widget=TinyMCE(attrs={'style':'width:100%'}, 
         mce_attrs={'storme_app_label':Video._meta.app_label, 
-        'storme_model':Video._meta.module_name.lower()}))
+        'storme_model':Video._meta.model_name.lower()}))
 
     status_detail = forms.ChoiceField(choices=(('active','Active'),('pending','Pending')))
 
