@@ -21,6 +21,7 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = "Categories"
+        app_label = 'videos'
 
     def get_absolute_url(self):
         return reverse('video.category', args=[self.slug])
@@ -35,6 +36,7 @@ class VideoType(models.Model):
 
     class Meta:
         verbose_name_plural = "Video Types"
+        app_label = 'videos'
 
 
 class Video(TendenciBaseModel):
@@ -79,6 +81,7 @@ class Video(TendenciBaseModel):
         ordering = ('ordering',)
         verbose_name = get_setting('module', 'videos', 'label') or "Video"
         verbose_name_plural = get_setting('module', 'videos', 'label_plural') or "Videos"
+        app_label = 'videos'
 
 
     @models.permalink
@@ -122,6 +125,9 @@ class OembedlyCache(models.Model):
     height = models.IntegerField(db_index=True)
     code = models.TextField()
     thumbnail = models.CharField(max_length=800)
+
+    class Meta:
+        app_label = 'videos'
 
     def __unicode__(self):
         return self.url
