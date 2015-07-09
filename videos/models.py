@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.urlresolvers import reverse
 from embedly import Embedly
-from django.contrib.contenttypes import generic
+from django.contrib.contenttypes.fields import GenericRelation
 
 from tendenci.apps.perms.object_perms import ObjectPermission
 from tagging.fields import TagField
@@ -53,7 +53,7 @@ class Video(TendenciBaseModel):
     tags = TagField(blank=True, help_text='Tag 1, Tag 2, ...')
     ordering = models.IntegerField(blank=True, null=True)
 
-    perms = generic.GenericRelation(ObjectPermission,
+    perms = GenericRelation(ObjectPermission,
                                           object_id_field="object_id",
                                           content_type_field="content_type")
 
