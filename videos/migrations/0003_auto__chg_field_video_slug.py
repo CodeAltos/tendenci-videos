@@ -171,7 +171,7 @@ class Migration(SchemaMigration):
             'create_dt': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'creator': ('django.db.models.fields.related.ForeignKey', [], {'default': 'None', 'related_name': "'videos_video_creator'", 'null': 'True', 'on_delete': 'models.SET_NULL', 'to': "orm['auth.User']"}),
             'creator_username': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-            'description': ('tinymce.models.HTMLField', [], {}),
+            'description': ('tendenci.libs.tinymce.models.HTMLField', [], {}),
             'entity': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'videos_video_entity'", 'on_delete': 'models.SET_NULL', 'default': 'None', 'to': "orm['entities.Entity']", 'blank': 'True', 'null': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'blank': 'True'}),

@@ -6,7 +6,7 @@ from django.contrib.contenttypes import generic
 from tendenci.core.perms.object_perms import ObjectPermission
 from tagging.fields import TagField
 from tendenci.core.perms.models import TendenciBaseModel
-from tinymce import models as tinymce_models
+from tendenci.libs.tinymce import models as tinymce_models
 from videos.managers import VideoManager
 from tendenci.core.site_settings.utils import get_setting
 

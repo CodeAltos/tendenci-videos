@@ -38,7 +38,7 @@ class Migration(SchemaMigration):
             ('category', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['videos.Category'])),
             ('image', self.gf('django.db.models.fields.files.ImageField')(max_length=100, blank=True)),
             ('video_url', self.gf('django.db.models.fields.CharField')(max_length=500)),
-            ('description', self.gf('tinymce.models.HTMLField')()),
+            ('description', self.gf('tendenci.libs.tinymce.models.HTMLField')()),
             ('tags', self.gf('tagging.fields.TagField')()),
             ('ordering', self.gf('django.db.models.fields.IntegerField')(null=True, blank=True)),
         ))
@@ -222,7 +222,7 @@ class Migration(SchemaMigration):
             'create_dt': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'creator': ('django.db.models.fields.related.ForeignKey', [], {'default': 'None', 'related_name': "'videos_video_creator'", 'null': 'True', 'to': "orm['auth.User']"}),
             'creator_username': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-            'description': ('tinymce.models.HTMLField', [], {}),
+            'description': ('tendenci.libs.tinymce.models.HTMLField', [], {}),
             'entity': ('django.db.models.fields.related.ForeignKey', [], {'default': 'None', 'related_name': "'videos_video_entity'", 'null': 'True', 'blank': 'True', 'to': "orm['entities.Entity']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'blank': 'True'}),
